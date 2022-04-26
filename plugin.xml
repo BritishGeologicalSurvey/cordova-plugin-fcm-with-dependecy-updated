@@ -37,19 +37,20 @@
 	<platform name="android">
 		<preference name="ANDROID_DEFAULT_NOTIFICATION_ICON" default="@mipmap/ic_launcher" />
 		<preference name="ANDROID_FCM_VERSION" default="21.0.0" />
-		<preference name="ANDROID_FIREBASE_BOM_VERSION" default="26.0.0" />
+		<preference name="ANDROID_FIREBASE_BOM_VERSION" default="29.0.4" />
 		<preference name="ANDROID_GOOGLE_SERVICES_VERSION" default="4.3.4" />
 		<preference name="ANDROID_GRADLE_TOOLS_VERSION" default="4.1.0" />
 
 		<config-file target="AndroidManifest.xml" parent="/manifest/application">
-			<activity android:name="com.gae.scaffolder.plugin.FCMPluginActivity" android:launchMode="singleTop">
+			<activity android:name="com.gae.scaffolder.plugin.FCMPluginActivity" android:exported="true" android:launchMode="singleTop">
 				<intent-filter>
 					<action android:name="FCM_PLUGIN_ACTIVITY" />
 					<category android:name="android.intent.category.DEFAULT" />
 				</intent-filter>
 			</activity>
-			<service 
+			<service
 				android:name="com.gae.scaffolder.plugin.MyFirebaseMessagingService"
+				android:exported="true"
 				android:stopWithTask="false">
 				<intent-filter>
 					<action android:name="com.google.firebase.MESSAGING_EVENT"/>
@@ -123,6 +124,7 @@
                 <source url="https://github.com/CocoaPods/Specs.git"/>
 			</config>
 			<pods>
+        <pod name="GoogleUtilities/UserDefaults" spec="~> 7.2.2"/>
 				<pod name="Firebase/Messaging" spec="$IOS_FIREBASE_MESSAGING_VERSION"/>
 			</pods>
 		</podspec>
